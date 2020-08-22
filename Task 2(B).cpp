@@ -3,11 +3,12 @@
 using namespace std;
 
 main(){
-  long n,q;
-  long long maxElement=0,sum=0,maxElement2=0;
+  long long n;
+  int q;
+  long long maxElement=0,sum=0;
   cin>>n>>q;
   
-  vector< pair<long,long> > query; //stores the index, value pairs in each query
+  vector< pair<long long,long> > query; //stores the index, value pairs in each query
  
   //Let us consider the array to be filled with only zeroes initially (a[i]=0)
   //The queries are processed in such a way that a[i] will be the prefix sum of the array elements
@@ -20,7 +21,8 @@ main(){
   
   for(int i=0; i<q; i++){
   	
-	  long long L,R,v;
+	  long long L,R;
+	  long v;
   	  cin>>L>>R>>v;
   	  query.push_back(make_pair(L,v));
   	  query.push_back(make_pair(R+1,-v));
@@ -48,7 +50,7 @@ main(){
   // So basically we consider the maximum value in each sets of elements between two queries and 
   // compare all such maximums in all sets.
    
-  for(int i=0; i<query.size()-1; i++){
+  for(int i=0; i+1<query.size(); i++){
   
   	sum += query[i].second; //prefix sum value in a[i]=0 array
   	
